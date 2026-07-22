@@ -5,7 +5,7 @@ MetaTrader 5 Expert Advisor for collecting ordered limit order book (LOB) snapsh
 **Version:** 3.10  
 **Author:** André Luís Lopes da Silva  
 **Platform:** MetaTrader 5 / MQL5  
-**Default sampling:** one valid snapshot per second  
+**Default sampling:** one valid snapshot per second (but it can be changed, depending on availability of your brokerage)   
 **Default depth:** five bid levels and five ask levels
 
 > This program is a data collector, not a trading strategy. It does not submit, modify, or close orders and does not claim that any recorded metric is profitable or predictive by itself.
