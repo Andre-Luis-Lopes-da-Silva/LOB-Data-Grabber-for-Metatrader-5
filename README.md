@@ -145,9 +145,7 @@ This is a conventional depth-ratio representation, but the exact name and aggreg
 
 ### `Imbalance`
 
-\[
-\mathrm{Imbalance}=\frac{D_B-D_A}{D_B+D_A}
-\]
+$$\mathrm{Imbalance}=\frac{D_B-D_A}{D_B+D_A}$$
 
 This is a multi-level displayed-depth imbalance bounded by \([-1,1]\) when volumes are non-negative. Positive values indicate bid-side dominance; negative values indicate ask-side dominance.
 
