@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21500763.svg)](https://doi.org/10.5281/zenodo.21500763)
+
 # LOB Data Grabber for Metatrader 5
 
 MetaTrader 5 Expert Advisor for collecting ordered limit order book (LOB) snapshots and exporting classical, dynamic, smoothed, and raw depth features to a semicolon-delimited CSV file.
