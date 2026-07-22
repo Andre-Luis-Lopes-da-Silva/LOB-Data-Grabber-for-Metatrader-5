@@ -516,10 +516,10 @@ For multiple files, use the timestamps inside each file to identify the actual o
 Until a formal software archive or DOI is available, cite the collector with its author, title, version, platform, and year:
 
 ```text
-Lopes da Silva, A. L. (2026). LOB Data Grabber MT5 (Version 3.10)
+Lopes da Silva, A. L. (2026). LOB Data Grabber for Metatrader 5 (Version 3.10)
 [MetaTrader 5 Expert Advisor].
 ```
 
 ## 20. License
 
-No software license is declared in the source code supplied with version 3.10. All rights remain with the copyright holder unless a separate license is added.
+This Expert Advisor is under GNU General Public License version 3.0 (GPL v3). 
