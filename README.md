@@ -235,16 +235,9 @@ For five levels, the weights are 5, 4, 3, 2, and 1. This metric emphasizes liqui
 
 ### `PressureBid`, `PressureAsk`, and `PressureRatio`
 
-\[
-\mathrm{PressureBid}=\sum_{i=1}^{L}\frac{B_i}{i},
-\qquad
-\mathrm{PressureAsk}=\sum_{i=1}^{L}\frac{A_i}{i}
-\]
+$$\mathrm{PressureBid}=\sum_{i=1}^{L}\frac{B_i}{i},\qquad\mathrm{PressureAsk}=\sum_{i=1}^{L}\frac{A_i}{i}$$
 
-\[
-\mathrm{PressureRatio}=
-\frac{\mathrm{PressureBid}}{\mathrm{PressureAsk}}.
-\]
+$$\mathrm{PressureRatio}=\frac{\mathrm{PressureBid}}{\mathrm{PressureAsk}}.$$
 
 These variables discount depth by its level number, giving the best quotes the highest contribution. They are custom proximity-weighted pressure measures, not standardized academic indicators.
 
