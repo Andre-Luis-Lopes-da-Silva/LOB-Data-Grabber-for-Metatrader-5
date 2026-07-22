@@ -115,11 +115,11 @@ The output columns are organized in six groups:
 
 Notation used below:
 
-- \(B_i\): bid volume at level \(i\), where level 1 is the best bid;
-- \(A_i\): ask volume at level \(i\), where level 1 is the best ask;
-- \(P_i^B\), \(P_i^A\): bid and ask prices at level \(i\);
-- \(L\): configured number of levels;
-- \(D_B=\sum_i B_i\), \(D_A=\sum_i A_i\), and \(D=D_B+D_A\);
+- $B_i$: bid volume at level $i$, where level 1 is the best bid;
+- $A_i$: ask volume at level $i$, where level 1 is the best ask;
+- $P_i^B$, $P_i^A$: bid and ask prices at level $i$;
+- $L$: configured number of levels;
+- $D_B=\sum_i B_i$, $D_A=\sum_i A_i$, and $D=D_B+D_A$;
 - `point`: `SYMBOL_POINT` for the selected symbol.
 
 ## 8. Timestamp and price columns
