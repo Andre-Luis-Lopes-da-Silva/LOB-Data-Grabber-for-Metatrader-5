@@ -135,7 +135,7 @@ Notation used below:
 
 ### `Ratio`
 
-$$\mathrm{Ratio}=\frac{D_B}{D_A}$$
+$$\boldsymbol{\mathrm{Ratio}=\frac{D_B}{D_A}}$$
 
 Values above 1 indicate more displayed bid depth than ask depth across the retained levels; values below 1 indicate the opposite. The fallback is 0 when the denominator is zero.
 
