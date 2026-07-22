@@ -1,4 +1,4 @@
-# LOB Data Grabber MT5
+# LOB Data Grabber for Metatrader 5
 
 MetaTrader 5 Expert Advisor for collecting ordered limit order book (LOB) snapshots and exporting classical, dynamic, smoothed, and raw depth features to a semicolon-delimited CSV file.
 
