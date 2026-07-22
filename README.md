@@ -147,15 +147,13 @@ This is a conventional depth-ratio representation, but the exact name and aggreg
 
 $$\mathrm{Imbalance}=\frac{D_B-D_A}{D_B+D_A}$$
 
-This is a multi-level displayed-depth imbalance bounded by \([-1,1]\) when volumes are non-negative. Positive values indicate bid-side dominance; negative values indicate ask-side dominance.
+This is a multi-level displayed-depth imbalance bounded by $[-1,1]$ when volumes are non-negative. Positive values indicate bid-side dominance; negative values indicate ask-side dominance.
 
 It is related to the broad order-book imbalance literature, but it must not be confused with the event-based **Order Flow Imbalance (OFI)** of Cont, Kukanov, and Stoikov. This EA's `Imbalance` is calculated from a snapshot of resting depth, not from additions, cancellations, and executions at the best quotes.
 
 ### `TotalDepth`
 
-\[
-\mathrm{TotalDepth}=D_B+D_A
-\]
+$$\mathrm{TotalDepth}=D_B+D_A$$
 
 Total displayed volume across the retained bid and ask levels. It is a liquidity/depth measure, not a guarantee that the displayed quantity can be executed without change.
 
@@ -163,25 +161,19 @@ Total displayed volume across the retained bid and ask levels. It is a liquidity
 
 Each slope is the ordinary least-squares coefficient from regressing the side's displayed volume on the zero-based level index:
 
-\[
-V_i=\beta_0+\beta_1 i+\varepsilon_i.
-\]
+$$V_i=\beta_0+\beta_1 i+\varepsilon_i.$$
 
-The exported value is \(\beta_1\). A positive slope means volume tends to increase away from the best quote; a negative slope means it tends to decrease. These are implementation-specific linear summaries of book shape, not a canonical estimator with a single original paper.
+The exported value is $\beta_1$. A positive slope means volume tends to increase away from the best quote; a negative slope means it tends to decrease. These are implementation-specific linear summaries of book shape, not a canonical estimator with a single original paper.
 
 ### `Spread`
 
-\[
-\mathrm{Spread}=\frac{P_1^A-P_1^B}{\mathrm{point}}
-\]
+$$\mathrm{Spread}=\frac{P_1^A-P_1^B}{\mathrm{point}}$$
 
 Quoted bid-ask spread expressed in platform points. A point is not necessarily the same as the exchange's minimum tick, so users should verify the symbol specification.
 
 ### `TopRatio`
 
-\[
-\mathrm{TopRatio}=\frac{B_1+A_1}{D}
-\]
+$$\mathrm{TopRatio}=\frac{B_1+A_1}{D}$$
 
 Fraction of the retained depth located at the best bid and best ask together. High values indicate that displayed liquidity is concentrated at the touch.
 
@@ -189,9 +181,7 @@ This exact formula is a project-specific concentration statistic.
 
 ### `ImbalN1`
 
-\[
-\mathrm{ImbalN1}=\frac{B_1-A_1}{B_1+A_1}
-\]
+$$\mathrm{ImbalN1}=\frac{B_1-A_1}{B_1+A_1}$$
 
 Classical top-of-book queue imbalance. It compares the displayed queues at the best bid and best ask and ranges from -1 to 1. Positive values indicate a larger best-bid queue.
 
@@ -199,19 +189,13 @@ The direct research reference for this use is Gould and Bonart (2016), who studi
 
 ### `ImbalDeep`
 
-\[
-\mathrm{ImbalDeep}=
-\frac{\sum_{i=2}^{L}B_i-\sum_{i=2}^{L}A_i}
-{\sum_{i=2}^{L}B_i+\sum_{i=2}^{L}A_i}
-\]
+$$\mathrm{ImbalDeep}=\frac{\sum_{i=2}^{L}B_i-\sum_{i=2}^{L}A_i}{\sum_{i=2}^{L}B_i+\sum_{i=2}^{L}A_i}$$
 
 Imbalance beyond the best quotes. It separates deeper displayed liquidity from the top-level queue. This exact split is implementation-specific.
 
 ### `DepthDelta`
 
-\[
-\mathrm{DepthDelta}_t=D_t-D_{t-1}
-\]
+$$\mathrm{DepthDelta}t=D_t-D{t-1}$$
 
 Change in retained total depth between consecutive accepted samples. It mixes new orders, cancellations, executions, price-level shifts, and any feed changes occurring between snapshots.
 
@@ -219,29 +203,19 @@ Change in retained total depth between consecutive accepted samples. It mixes ne
 
 First, the EA calculates the top-of-book volume-weighted microprice:
 
-\[
-\mathrm{MicroPrice}=
-\frac{P_1^B A_1+P_1^A B_1}{B_1+A_1}.
-\]
+$$\mathrm{MicroPrice}=\frac{P_1^B A_1+P_1^A B_1}{B_1+A_1}.$$
 
 Then it exports:
 
-\[
-\mathrm{MicroPriceDist}=
-\frac{\mathrm{LastPrice}-\mathrm{MicroPrice}}{\mathrm{point}}.
-\]
+$$\mathrm{MicroPriceDist}=\frac{\mathrm{LastPrice}-\mathrm{MicroPrice}}{\mathrm{point}}.$$
 
 The cross-weighting moves the estimate toward the ask when the bid queue is larger and toward the bid when the ask queue is larger. Stoikov's micro-price research provides the principal reference for microprice as a high-frequency estimate of future prices. The EA exports distance from the last trade to its static top-level microprice, not Stoikov's full empirical state-dependent estimator.
 
 ### `AggBuy` and `AggSell`
 
-\[
-\mathrm{AggBuy}_t=\max(0,A_{1,t-1}-A_{1,t})
-\]
+$$\mathrm{AggBuy}t=\max(0,A{1,t-1}-A_{1,t})$$
 
-\[
-\mathrm{AggSell}_t=\max(0,B_{1,t-1}-B_{1,t})
-\]
+$$\mathrm{AggSell}t=\max(0,B{1,t-1}-B_{1,t})$$
 
 These are **heuristic top-queue depletion proxies**. A fall in best-ask volume is treated as possible buying aggression, and a fall in best-bid volume as possible selling aggression.
 
@@ -251,13 +225,9 @@ They are not true aggressor-side trade volume. They cannot distinguish execution
 
 ### `WeightedImbalance`
 
-With \(w_i=L-i+1\), so that the nearest level receives the largest weight:
+With $w_i=L-i+1$, so that the nearest level receives the largest weight:
 
-\[
-\mathrm{WeightedImbalance}=
-\frac{\sum_i w_iB_i-\sum_i w_iA_i}
-{\sum_i w_iB_i+\sum_i w_iA_i}.
-\]
+$$\mathrm{WeightedImbalance}=\frac{\sum_i w_iB_i-\sum_i w_iA_i}{\sum_i w_iB_i+\sum_i w_iA_i}.$$
 
 For five levels, the weights are 5, 4, 3, 2, and 1. This metric emphasizes liquidity closer to execution. The general idea of using multiple LOB levels is supported by multi-level imbalance research, but this exact linear weighting scheme is a project-specific design choice and has no claimed single original source.
 
