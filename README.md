@@ -243,25 +243,15 @@ These variables discount depth by its level number, giving the best quotes the h
 
 ### `WeightedMicroPrice` and `WeightedMicroDist`
 
-\[
-\mathrm{WeightedMicroPrice}=
-\frac{P_1^B\,\mathrm{PressureAsk}+P_1^A\,\mathrm{PressureBid}}
-{\mathrm{PressureBid}+\mathrm{PressureAsk}}
-\]
+$$\mathrm{WeightedMicroPrice}=\frac{P_1^B,\mathrm{PressureAsk}+P_1^A,\mathrm{PressureBid}}{\mathrm{PressureBid}+\mathrm{PressureAsk}}$$
 
-\[
-\mathrm{WeightedMicroDist}=
-\frac{\mathrm{LastPrice}-\mathrm{WeightedMicroPrice}}{\mathrm{point}}.
-\]
+$$\mathrm{WeightedMicroDist}=\frac{\mathrm{LastPrice}-\mathrm{WeightedMicroPrice}}{\mathrm{point}}.$$
 
 This extends the top-level microprice idea by replacing the two best-queue volumes with the EA's multi-level pressure measures. It is therefore a custom extension inspired by microprice, not the original Stoikov estimator.
 
 ### `DepthConc2`, `DepthConc3`, and `DepthConc5`
 
-\[
-\mathrm{DepthConc}k=
-\frac{\sum_{i=1}^{k}(B_i+A_i)}{D}.
-\]
+$$\mathrm{DepthConc}k=\frac{\sum_{i=1}^{k}(B_i+A_i)}{D}.$$
 
 They report the fraction of retained depth found in the nearest 2, 3, or 5 levels. With `InpLevels = 5`, `DepthConc5` is mechanically 1 whenever total depth is positive; it serves mainly as a consistency field. With fewer configured levels, zero-filled unused slots mean the same caveat applies relative to the retained book.
 
@@ -271,32 +261,21 @@ These exact concentration ratios are descriptive project features.
 
 For the ten-element vector containing five bid and five ask volumes:
 
-\[
-p_j=\frac{V_j}{\sum_kV_k},
-\qquad
-\mathrm{BookEntropy}=
-\frac{-\sum_jp_j\ln p_j}{\ln(10)}.
-\]
+$$p_j=\frac{V_j}{\sum_kV_k},\qquad\mathrm{BookEntropy}=\frac{-\sum_jp_j\ln p_j}{\ln(10)}.$$
 
-Zero-volume elements contribute zero. The result is intended to lie in \([0,1]\): lower values mean volume is concentrated in fewer price-side cells; higher values mean it is more evenly distributed.
+Zero-volume elements contribute zero. The result is intended to lie in $[0,1]$: lower values mean volume is concentrated in fewer price-side cells; higher values mean it is more evenly distributed.
 
 The mathematical foundation is Shannon entropy (Shannon, 1948). Its application to the ten LOB cells and the normalization by `ln(10)` are implementation choices made in this EA. When fewer than five levels are populated, the fixed ten-cell normalization should be considered when comparing samples.
 
 ### `BookSymmetry`
 
-\[
-\mathrm{BookSymmetry}=1-|\mathrm{Imbalance}|.
-\]
+$$\mathrm{BookSymmetry}=1-|\mathrm{Imbalance}|.$$
 
 The metric equals 1 when retained bid and ask depth are equal and approaches 0 as one side dominates. This exact transformation is project-specific.
 
 ### `BookConvexity`
 
-\[
-\mathrm{BookConvexity}=
-\frac{\sum_{i=1}^{2}(B_i+A_i)}
-{\sum_{i=3}^{L}(B_i+A_i)}.
-\]
+$$\mathrm{BookConvexity}=\frac{\sum_{i=1}^{2}(B_i+A_i)}{\sum_{i=3}^{L}(B_i+A_i)}.$$
 
 It compares near-touch depth with farther retained depth. Values above 1 mean more depth is concentrated in the first two levels; values below 1 mean more is located farther away.
 
@@ -306,9 +285,7 @@ Order-book shape and depth profiles are established research topics, including B
 
 Every `d*` variable is the current raw value minus the value from the previous **accepted snapshot**:
 
-\[
-dX_t=X_t-X_{t-1}.
-\]
+$$dX_t=X_t-X_{t-1}.$$
 
 The columns are:
 
@@ -331,13 +308,9 @@ They are commonly one-second changes under uninterrupted collection, but they ar
 
 For each smoothed variable, the EA uses:
 
-\[
-\alpha=\frac{2}{N+1},
-\qquad
-\mathrm{EMA}_t=\mathrm{EMA}_{t-1}+\alpha(X_t-\mathrm{EMA}_{t-1}),
-\]
+$$\alpha=\frac{2}{N+1},\qquad\mathrm{EMA}t=\mathrm{EMA}{t-1}+\alpha(X_t-\mathrm{EMA}_{t-1}),$$
 
-where \(N=\texttt{InpEmaPeriod}\). The first accepted observation initializes the EMA to the raw value.
+where $N=\texttt{InpEmaPeriod}$. The first accepted observation initializes the EMA to the raw value.
 
 The output contains EMA versions of the raw metrics, not of the `d*` metrics:
 
