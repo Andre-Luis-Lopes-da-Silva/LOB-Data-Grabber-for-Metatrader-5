@@ -449,12 +449,10 @@ For multiple files, use the timestamps inside each file to identify the actual o
 
 ## 19. Suggested citation of the software
 
-Until a formal software archive or DOI is available, cite the collector with its author, title, version, platform, and year:
+If you use this software in your research, please cite it as follows:
 
-```text
-Lopes da Silva, A. L. (2026). LOB Data Grabber for Metatrader 5 (Version 3.10)
-[MetaTrader 5 Expert Advisor].
-```
+**APA style**  
+Lopes da Silva, A. L. (2026). *LOB Data Grabber for Metatrader 5* (Version 3.10) [MetaTrader 5 Expert Advisor]. Zenodo. https://doi.org/10.5281/zenodo.21500763
 
 ## 20. License
 
